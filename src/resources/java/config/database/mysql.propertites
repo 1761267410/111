@@ -1,0 +1,24 @@
+driverClass = com.mysql.jdbc.Driver
+jdbcUrl = jdbc:mysql://localhost:3306/third_item?useUnicode=true&amp;characterEncoding=UTF-8&amp;useOldAliasMetadataBehavior=true 
+user = root
+password = root
+#\u8BBE\u7F6E\u6570\u636E\u5E93\u65B9\u8A00
+hibernate.dialect = org.hibernate.dialect.MySQLDialect
+#\u8FDE\u63A5\u6C60\u6570\u91CF
+hibernate.connection.pool_size = 5
+
+hibernate.hbm2ddl.auto = update
+
+#\u5904\u7406\u6570\u636E\u5E93\u8BED\u53E5\u663E\u793A\u683C\u5F0F
+hibernate.format_sql = true
+#\u663E\u793A\u6570\u636E\u5E93\u8BED\u53E5
+hibernate.show_sql = true
+current_session_context_class = org.springframework.orm.hibernate4.SpringSessionContext
+hibernate.jdbc.batch_size=50
+c3p0.acquire_increment = 2
+c3p0.idle_test_period = 120
+c3p0.timeout = 1000
+c3p0.max_size = 100
+c3p0.max_statements = 100
+c3p0.min_size = 20
+c3p0.validate = true

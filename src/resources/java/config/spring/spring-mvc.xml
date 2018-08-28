@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- spring-mvc的包扫描 -->
+	<context:component-scan base-package="net.dfrz.action"></context:component-scan>
+
+	<mvc:annotation-driven validator="validator">
+		<!-- 阿里巴巴的json格式转换器配置 -->
+		<mvc:message-converters register-defaults="true">
+			<bean
+				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<!-- 支持格式 -->
+						<value>text/html;charset=UTF-8</value>
+						<value>application/json</value>
+						<value>application/xml;charset=UTF-8</value>
+					</list>
+				</property>
+				<property name="features">
+					<list>
+						<!-- 默认的意思就是不配置这个属性，配置了就不是默认了 -->
+						<!-- 是否输出值为null的字段 ，默认是false -->
+						<value>WriteMapNullValue</value>
+						<value>WriteNullNumberAsZero</value>
+						<value>WriteNullListAsEmpty</value>
+						<value>WriteNullStringAsEmpty</value>
+						<value>WriteNullBooleanAsFalse</value>
+						<value>WriteDateUseDateFormat</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+
+	<!-- 上传文件的设置 ，maxUploadSize=-1，表示无穷大。uploadTempDir为上传的临时目录 -->
+	<bean
+		id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property
+			name="maxUploadSize"
+			value="1024000"></property>
+		<property
+			name="defaultEncoding"
+			value="UTF-8"></property>
+		<property
+			name="maxInMemorySize"
+			value="40960"></property>
+	</bean>
+
+	<!-- 第一种：设置静态资源的访问 -->
+	<!-- <mvc:default-servlet-handler/> -->
+	<!-- 第二种：设置静态资源的访问 -->
+	<mvc:resources
+		location="/img/"
+		mapping="/img/**"></mvc:resources>
+	<mvc:resources
+		location="/js/"
+		mapping="/js/**"></mvc:resources>
+	<mvc:resources
+		location="/css/"
+		mapping="/css/**"></mvc:resources>
+	<mvc:resources
+		location="/html/"
+		mapping="/html/**"></mvc:resources>
+	<mvc:resources
+		location="/font/"
+		mapping="/font/**"></mvc:resources>
+	<mvc:resources
+		location="/fonts/"
+		mapping="/fonts/**"></mvc:resources>
+		<mvc:resources
+		location="/modules/"
+		mapping="/modules/**"></mvc:resources>
+
+	<!-- 校验框架 -->
+	<!-- 1、導入導入校驗框架的jar包：hibernate-validator 2、在spring-mvc.xml中添加配置 3、(PersonBO)添加校驗規則可以去bean的BO對象中添加標間 
+		4、到Action的方法中加入參數BindingResult和對象參數(HelloMVCAction) -->
+	<bean
+		id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property
+			name="providerClass"
+			value="org.hibernate.validator.HibernateValidator" />
+
+		<property
+			name="validationMessageSource"
+			ref="validatorMessage" />
+	</bean>
+	<!-- 校验信息提示文件位置 -->
+	<bean
+		id="validatorMessage"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:config/springMVC/person</value>
+			</list>
+		</property>
+		<property
+			name="fileEncodings"
+			value="UTF-8"></property>
+		<property
+			name="cacheSeconds"
+			value="120"></property>
+	</bean>
+
+	<!--拦截器 -->
+	<!-- <mvc:interceptors> 多个拦截器,顺序执行 <mvc:interceptor> <mvc:mapping path="/**" 
+		/> <bean class="net.dfrz.interceptor.MyInterceptor"></bean> </mvc:interceptor> 
+		</mvc:interceptors> -->
+
+
+	<!-- <bean id="handlerExceptionResolver" class="net.dfrz.exception.MyExceptionResolver"/> -->
+
+	<!-- 页面View层基本信息设定 -->
+	<bean
+		id="defaultViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property
+			name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property
+			name="prefix"
+			value="/jsp/"></property>
+		<property
+			name="suffix"
+			value=".jsp" />
+	</bean>
+</beans>

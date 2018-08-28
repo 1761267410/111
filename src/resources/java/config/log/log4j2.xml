@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--设置log4j2的自身log级别为warn-->
+<!-- 打印日志级别：ALL《TRANCE《DEBUG《INFO《WARN《ERROR(从小到大) -->
+<configuration status="INFO">
+    <appenders>
+        <console name="Console" target="SYSTEM_OUT">
+			<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+        	<PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+        </console>
+    </appenders>
+
+    <loggers>
+        <!--过滤掉spring和hibernate的一些无用的debug信息-->
+        <logger name="org.springframework" level="INFO">
+        </logger>
+        <logger name="org.hibernate" level="INFO">
+        </logger>
+        <logger name="com.opensymphony.xwork2" level="INFO">
+        </logger>
+        <root level="all">
+            <appender-ref ref="Console"/>
+        </root>
+    </loggers>
+
+</configuration>
