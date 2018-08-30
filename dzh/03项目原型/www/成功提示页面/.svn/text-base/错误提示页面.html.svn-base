@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<link href="css/page.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	width:88px;
+	height:23px;
+	z-index:1;
+	left: 322px;
+	top: 314px;
+}
+-->
+</style>
+</head>
+
+<body>
+<div id="div_top">
+	<div id="titleBar">当前位置：提示页面</div>
+</div>
+ <div id="div_middle">
+   <div style="margin:90px auto 0px 300px;"><img src="img/返回首页图片.jpg"/>
+   <img src="img/成功提示图片.jpg"/>
+     <div id="Layer1"><a href="#"><img src="img/继续操作图片.jpg" border="0"/></a></div>
+   </div>
+ </div>
+</div>
+</body>
+</html>

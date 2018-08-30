@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>文件上传</title>
+	<link href="css/tablecloth.css" rel="stylesheet" type="text/css" />
+	<script src="js/boot.js" type="text/javascript"></script>
+	<script src="js/tablecloth.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function(){
+			jQuery("#formID").validationEngine({showOneMessage:true});
+			$(".red:eq(3)").hide();
+		});
+		function onclickitem(obj){
+			if(obj.value==1){
+				$("#signRemark").addClass("validate[required]");
+				$(".red:eq(3)").show();
+			}else{
+				$("#signRemark").removeClass("validate[required]");
+				$(".red:eq(3)").hide();
+			}
+		}
+	</script>
+	
+
+</head>
+
+<body>
+<div id="div_top">
+	<div id="titleBar">当前位置：<span id="position">系统公告&gt;</span>文件上传</div>
+</div>
+
+
+
+    <div id="div_search">
+<form method="post" id="formID" action="manageArrive.html" >
+	<table height="256" id="searchTable">
+	<tr>
+    <th width="89" height="51">课件名称:</th>
+    <td width="649"><input type="text" name="textfield6" class="common_input" size="40" />
+      <span class="red">*</span></td>
+	</tr>
+	<tr>
+    
+	  <th height="164">课件说明:</th>
+      <td><textarea id="signRemark" name="textarea" class="common_short_textarea" rows="15" cols="50"></textarea></td>
+	</tr>
+	    <th>请选择文件:</th>
+    <td><input type="file" value="请选择" name="myfile"/>
+      <input name="submit" type="submit" value="上传"/></td>
+  	</tr>
+	<tr>
+ </table>
+</form>
+
+</div>
+</body>
+</html>
